@@ -1,10 +1,10 @@
-﻿Cliente cliente = new Cliente
+﻿var cliente = new Cliente
 {
     Nome = "Hisllaylla",
     Idade = 19,
     Profissao = "Estudante",
     EstadoCivil = "Solteira",
-    Documento = 12345678901,
+    Documento = "12345678901",
 
     ListaEndereco = new List<Endereco>
     {
@@ -16,25 +16,21 @@
     }
 };
 
+var enderecosSp = cliente.ListaEndereco.Where(x => x.Estado == "SP").ToList();
+var enderecosFora = cliente.ListaEndereco.Where(x => x.Estado != "SP").ToList();
 
-List<Endereco> totalEnderecos = cliente.ListaEndereco.ToList();
+var totalLista = cliente.ListaEndereco.Count;
+var totalSp = enderecosSp.Count;
+var totalfora = enderecosFora.Count;
 
-// revelar total de endereços
-foreach (var endereco in totalEnderecos)
+Console.WriteLine($"Total de endereços de SP: {totalSp}");
+foreach (var item in enderecosSp)
 {
-    // filtrar endereços por SP
-    totalEnderecos.RemoveAll(endereco => endereco.Estado != "SP");
-
-    Console.WriteLine($"ID: {endereco.Id}, LOGRADOURO: {endereco.Logradouro}, NÚMERO: {endereco.Numero}, BAIRRO: {endereco.Bairro}, CIDADE: {endereco.Cidade}, ESTADO: {endereco.Estado}");
-
+    Console.WriteLine(item.ToString());
 };
 
-
-foreach (var endereco in totalEnderecos)
+Console.WriteLine($"Total de endereços de fora de SP: {totalfora}");
+foreach (var item in enderecosFora)
 {
-    // filtrar endereços diferentes de SP
-    if (endereco.Estado != "SP")
-    {
-        Console.WriteLine($"ID: {endereco.Id}, Logradouro: {endereco.Logradouro}, Número: {endereco.Numero}, Bairro: {endereco.Bairro}, Cidade: {endereco.Cidade}, Estado: {endereco.Estado}");
-    }
+    Console.WriteLine(item.ToString());
 };
