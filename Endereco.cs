@@ -9,7 +9,7 @@ public class Endereco
     public string Cidade { get; set; }
     public string Estado { get; set; }
 
-    public override string ToString()
+    public override string ToString() // método para personalização do retorno 
     {
         return $"ID: {Id}, Logradouro: {Logradouro}, Número: {Numero}, Bairro: {Bairro}, Cidade: {Cidade}, Estado: {Estado}";
     }
